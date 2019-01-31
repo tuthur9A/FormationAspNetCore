@@ -1,0 +1,42 @@
+﻿@model IEnumerable<NetFlox.DAL.Celebrite>
+
+@{
+    ViewData["Title"] = "search";
+}
+
+<h2> @ViewData["nb"] résultats de la recherche pour "@ViewData["query"]"</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nom)
+            </th>
+            <th>
+                Date de Naissance
+            </th>
+            <th>
+                Photo
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateNaissance)
+            </td>
+            <td>
+                <img src="@item.UrlPhoto" width="200" height="250" alt="poster" />
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
